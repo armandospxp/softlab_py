@@ -2,12 +2,21 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
+
+class TipoMuestra(BaseModel):
+    """Clase que representa tipo muestra"""
+    id_tipo_muestra:int 
+    descripcion_tipo_muestra:int
+
+
 class Analisis(BaseModel):
     """Esta clase representa a analisis"""
     id_analisis: int
     nombre_analisis: str
     descripcion_analisis: str
-    id_tipo_muestra: int
+    observaciones: str 
+    id_determinacion:int
+    id_tipo_muestra:int
 
 class PedidoAnalisis(BaseModel):
     """Clase que representa el pedido de un analisis"""
@@ -30,7 +39,7 @@ class Paciente(BaseModel):
     correo_paciente:str
     
 class Medido(BaseModel):
-    """Clase medico, que seria el que solicita el analisis para el paciente"""]
+    """Clase medico, que seria el que solicita el analisis para el paciente"""
     id_medico:int
     nombre_medico:str
     apellido_medico:str
@@ -48,6 +57,15 @@ class Resultado(BaseModel):
     """Clase donde va los resultados del pedido de analisis"""
     id_resultado:int 
     id_pedido_analisis:int 
+    id_analisis:int
+    id_resultado_determinacion_analisis:int
+    
+class ResultadoDeterminacionAnalisis(BaseModel):
+    """Clase resultado de determinacion asociado a un analisis"""
+    id_resultado_determinacion_analkisis:int
+    resultado_valor:str
+    id_determinacion:int
+    id_analisis:int
     
     
     
@@ -83,4 +101,18 @@ class Metodo(BaseModel):
     """Clase para el metodo en que se realiza cada determinacion"""
     id_metodo:int
     nombre_metodo:str 
+
+
+class EquiposLaboratorio(BaseModel):
+    """Clase para equipos de laboratorio"""
+    id_equipo_laboratorio:int 
+    nombre_equipo:int 
+    marca_equipo:int 
+    id_tipo_conexion:int 
+
+
+class TipoConexionEquipo(BaseModel):
+    """Clase para tipo conexion"""
+    id_tipo_conexion_equipo:int 
+    descripcion_conexion:str 
     
